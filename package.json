@@ -1,0 +1,75 @@
+{
+    "name": "contributions-generator",
+    "version": "1.0.0",
+    "description": "desc1241ription",
+    "keywords": [
+        "kwrd1",
+        "kwrd2"
+    ],
+    "author": "loktionov129",
+    "license": "MIT",
+    "scripts": {
+        "gulp": "gulp",
+        "eslint": "eslint",
+        "htmllint": "htmllint",
+        "stylelint": "stylelint --fix --config ./.stylelintrc",
+        "lint:js": "yarn run eslint --fix --config ./.eslintrc.json",
+        "lint:html": "htmllint --fix --config ./.htmllintrc",
+        "lint:less": "stylelint",
+        "clean": "yarn run gulp -f gulp/main.js cleanTask",
+        "build": "yarn run gulp -f gulp/main.js buildTask",
+        "start": "yarn run gulp -f gulp/main.js"
+    },
+    "bin": {
+        "contributions-generator": "bin/cli.js"
+    },
+    "main": "bin/cli.js",
+    "engines": {
+        "node": ">=6.0.1"
+    },
+    "browserslist": "> 0.25%, not dead",
+    "lint-staged": {
+        "*.js": [
+            "yarn run lint:js",
+            "git add"
+        ],
+        "*.html": [
+            "yarn run lint:html",
+            "git add"
+        ],
+        "*.less": [
+            "yarn run lint:less",
+            "git add"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "devDependencies": {
+        "@babel/core": "7.8.4",
+        "@babel/preset-env": "7.8.4",
+        "browser-sync": "2.26.7",
+        "del": "5.1.0",
+        "eslint": "6.8.0",
+        "gulp": "4.0.2",
+        "gulp-autoprefixer": "7.0.1",
+        "gulp-babel": "8.0.0",
+        "gulp-clean-css": "4.2.0",
+        "gulp-concat": "2.6.1",
+        "gulp-group-css-media-queries": "1.2.2",
+        "gulp-htmlmin": "5.0.1",
+        "gulp-less": "4.0.1",
+        "gulp-plumber": "1.2.1",
+        "gulp-size": "3.0.0",
+        "gulp-token-replace": "1.1.5",
+        "gulp-uglify": "3.0.2",
+        "htmllint": "0.7.2",
+        "htmllint-cli": "0.0.7",
+        "husky": "4.2.3",
+        "lint-staged": "10.0.8",
+        "stylelint": "13.2.0"
+    },
+    "dependencies": {}
+}
