@@ -3,6 +3,7 @@ const browserSync = require('browser-sync');
 
 const config = require('../config');
 
+const buildTask = require('./build');
 const layoutTask = require('./layout');
 const scriptsTask = require('./scripts');
 const stylesTask = require('./styles');
@@ -17,6 +18,7 @@ function sync() {
         logPrefix: config.watch.logPrefix,
         injectChanges: true,
         tunnel: false,
+        open: false,
     });
 }
 
@@ -27,4 +29,7 @@ function watch(cb) {
     cb();
 }
 
-module.exports = gulp.parallel(sync, watch);
+module.exports = gulp.series(
+    buildTask,
+    gulp.parallel(sync, watch),
+);

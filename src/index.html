@@ -20,30 +20,25 @@
         08/09/2011/4
         цвет меняется по клику от 0 до 4
     </pre>
-    <svg>
-        <g id="contributions" class="asd" style="color:red">
-        </g>
-        <g
-            id="contributions"
-            class="asd"
-            style="color:red"
-        >
-        </g>
-        <g
-            id="contributions"
-            class="asd"
-            style="color:red">
-        </g>
-        <g
-        id="contributions"
-        class="asd"
-        style="color:red"
-        ></g>
-        <g
-            id="contributions"
-            class="asd"
-            style="color:red"></g>
-    </svg>
+    <ul>
+    </ul>
+    <div class="contributions">
+        <form class="contributions__settings settings" name="settings">
+            <label for="settings__mode-click">click</label>
+            <input type="radio" name="mode" id="settings__mode-click" value="click" checked="checked">
+            <label for="settings__mode-move">move</label>
+            <input type="radio" name="mode" id="settings__mode-move" value="move">
+        </form>
+        <br />
+
+        <svg id="contributions__area" class="contributions__area"></svg>
+
+        <br />
+        <label for="contributions__year">year</label>
+        <input type="text" id="contributions__year">
+
+        <input type="button" value="Generate!" id="contributions__generate"/>
+    </div>
     <script src="js/{{config.bundle.js}}"></script>
 </body>
 </html>

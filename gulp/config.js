@@ -1,6 +1,7 @@
 const resolvePath = require('./utils/resolve-path');
 
 module.exports = resolvePath({
+    isProduction: process.argv.includes('--production'),
     path: {
         dest: {
             layout: 'dest/',
@@ -9,7 +10,7 @@ module.exports = resolvePath({
         },
         src: {
             layout: 'src/index.html',
-            scripts: 'src/scripts/**/*.js',
+            scripts: 'src/scripts/main.js',
             styles: 'src/styles/**/*.less'
         },
         clean: ['dest/**/*', '!dest/.gitignore', '!dest/favicon.ico']

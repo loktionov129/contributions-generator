@@ -1,18 +1,35 @@
-function fasdad() {
-    console.warn(51599);
-    return Promise.resolve(15);
+const Color = require('./color');
+const AppModel = require('./models/app.model');
+const AppView = require('./views/app.view');
+const AppController = require('./controllers/app.controller');
+
+const appModel = new AppModel();
+const appView = new AppView();
+new AppController(appModel, appView);
+
+function fx(event) {
+    console.warn(event);
 }
 
-function fas2dad() {
-    console.warn(4299);
-    return Promise.reject(new Error(421));
-}
+document.addEventListener('mousedown', function (event) {
+    event.preventDefault();
+    console.warn('down', event);
+    // contributions.addEventListener('mousemove', fx);
+});
+document.addEventListener('mouseup', function (event) {
+    event.preventDefault();
+    console.warn('up', event);
+    // contributions.removeEventListener('mousemove', fx);
+});
 
-if (Math.random() > 0.5) {
-    fasdad();
-} else {
-    fas2dad();
-}
+
+document.getElementById('contributions__generate')
+    .addEventListener('click', function () {
+        console.warn(this);
+    });
+
+
+
 // Array.from(Array(53))
 //     .map(() => Array.from(Array(7)).map(() => 0))
 

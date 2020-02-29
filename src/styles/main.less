@@ -1,36 +1,9 @@
 @import './vars/sizes.less';
 @import './vars/colors.less';
 
-a {
-    color: red;
-    transform: rotate(12);
-    font-size: @b;
-}
-
-.b {
-    color: yellow;
-    transform: scale(12);
-
-    &__title {
-        font-size: @a;
-    }
-}
-
-/* Set the background color of body to tan */
-body {
-    background-color: @color-body-default;
-}
-
-/* On screens that are 992px or less, set the background color to blue */
-@media screen and (max-width: 992px) {
-    body {
-        background-color: @color-body-992;
-    }
-}
-
-/* On screens that are 600px or less, set the background color to olive */
-@media screen and (max-width: 600px) {
-    body {
-        background-color: @color-body-600;
+.contributions {
+    &__area {
+        width: 722px;
+        height: 112px;
     }
 }
