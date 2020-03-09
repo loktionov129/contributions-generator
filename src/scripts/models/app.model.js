@@ -4,25 +4,23 @@ const ATTRIBUTE_FILL = 'fill';
 // state with select(combobox)
 const previousContributions = {
     contributions: [],
-    date: new Date()
-}
+    date: new Date(),
+};
 
 class AppModel {
     getContributions() {
         return Array.from(Array(53))
-            .map((_, i) => {
-                return {
-                    translate: 14 * i,
-                    rects: Array.from(Array(7))
-                        .map((_, j) => ({
-                            color: '#ebedf0',
-                            x: 14 - i,
-                            y: 13 * j,
-                            height: 10,
-                            width: 10
-                        }))
-                };
-            });
+            .map((_, i) => ({
+                translate: 14 * i,
+                rects: Array.from(Array(7))
+                    .map((_, j) => ({
+                        color: '#ebedf0',
+                        x: 14 - i,
+                        y: 13 * j,
+                        height: 10,
+                        width: 10,
+                    })),
+            }));
     }
 
     increaseContributions(target) {
@@ -31,7 +29,7 @@ class AppModel {
     }
 
     decreaseContributions(target) {
-        setColor(target, color => color.prev());
+        setColor(target, (color) => color.prev());
     }
 }
 

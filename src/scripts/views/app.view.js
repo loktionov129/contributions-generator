@@ -3,7 +3,7 @@ const ReplaySubject = require('../misc/replay-subject');
 
 const drawingModeSelector = 'form[name="settings"] input[name="mode"]';
 
-// combine mouseUp + mouseDown 
+// combine mouseUp + mouseDown
 // prevent click + contextMenu
 
 class AppView {
@@ -35,7 +35,7 @@ class AppView {
     }
 
     drawContributions(data) {
-        const html = data.map(column => {
+        const html = data.map((column) => {
             const rects = column.rects
                 .map((row) => `<rect class="day" width="${row.width}" height="${row.height}" x="${row.x}" y="${row.y}" fill="${row.color}"></rect>`)
                 .join('');
@@ -72,7 +72,7 @@ function addEventListeners() {
         });
 
     document.querySelectorAll(drawingModeSelector)
-        .forEach(radio => {
+        .forEach((radio) => {
             radio.addEventListener('change', (event) => _this._drawingModeChange$.next(event.target.value));
         });
 
@@ -84,12 +84,12 @@ function initDrawingMode() {
     const drawingMode = document.querySelector(`${drawingModeSelector}:${checked}`);
 
     if (drawingMode) {
-        this._drawingModeChange$.next(drawingMode.value)
+        this._drawingModeChange$.next(drawingMode.value);
         return;
     }
 
     const mode = document.querySelector(drawingModeSelector);
-    this._drawingModeChange$.next(mode.value)
+    this._drawingModeChange$.next(mode.value);
     mode.setAttribute(checked, checked);
 }
 

@@ -11,7 +11,7 @@ class AppController {
 
 function initHandlers() {
     this._appView.drawingModeChange$
-        .subscribe(mode => {
+        .subscribe((mode) => {
             switch (mode) {
                 case 'click': this._appView.activateClickMode(); break;
                 case 'move': this._appView.activateMoveMode(); break;

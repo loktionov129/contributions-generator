@@ -18,12 +18,10 @@ const bundler = watchify(browserify({
     transform: [
         babelify.configure({
             presets: ['@babel/preset-env'],
-            sourceMaps: !config.isProduction
-        })
-    ]
+            sourceMaps: !config.isProduction,
+        }),
+    ],
 }));
-
-bundler.on('update', scriptsTask);
 
 function scriptsTask() {
     return bundler
@@ -38,5 +36,7 @@ function scriptsTask() {
         .pipe(gulp.dest(config.path.dest.scripts))
         .pipe(browserSync.reload({ stream: true }));
 }
+
+bundler.on('update', scriptsTask);
 
 module.exports = scriptsTask;

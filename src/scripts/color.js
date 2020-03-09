@@ -1,7 +1,7 @@
 const colors = ['#ebedf0', '#c6e48b', '#7bc96f', '#239a3b', '#96127'];
 
 function getIndexByColor(target) {
-    return colors.findIndex(color => color === target);
+    return colors.findIndex((color) => color === target);
 }
 
 class Color {

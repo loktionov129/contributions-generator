@@ -46,7 +46,6 @@ new AppController(appModel, appView);
 // save(dataToSave, '2018');
 
 
-
 /*
 import { Component, OnInit } from "@angular/core";
 import { ReplaySubject as OReplaySubject, Subject as OSubject } from "rxjs";

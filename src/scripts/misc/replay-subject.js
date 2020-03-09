@@ -1,8 +1,8 @@
 const Subject = require('./subject');
 
 function notify(subscribers, events) {
-    events.forEach(event => {
-        subscribers.forEach(subscriber => {
+    events.forEach((event) => {
+        subscribers.forEach((subscriber) => {
             if (!event.calledSubscribers[subscriber]) {
                 subscriber(event.value);
                 event.calledSubscribers[subscriber] = true;
@@ -25,7 +25,7 @@ class ReplaySubject extends Subject {
 
         this._events.push({
             value: data,
-            calledSubscribers: {}
+            calledSubscribers: {},
         });
 
         notify(this._subscribers, this._events);

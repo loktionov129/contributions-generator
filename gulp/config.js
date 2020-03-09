@@ -6,23 +6,23 @@ module.exports = resolvePath({
         dest: {
             layout: 'dest/',
             scripts: 'dest/js/',
-            styles: 'dest/css/'
+            styles: 'dest/css/',
         },
         src: {
             layout: 'src/index.html',
             scripts: 'src/scripts/main.js',
-            styles: 'src/styles/**/*.less'
+            styles: 'src/styles/**/*.less',
         },
-        clean: ['dest/**/*', '!dest/.gitignore', '!dest/favicon.ico']
+        clean: ['dest/**/*', '!dest/.gitignore', '!dest/favicon.ico'],
     },
     bundle: {
         html: 'index.html',
         js: 'bundle.min.js',
-        css: 'styles.min.css'
+        css: 'styles.min.css',
     },
     watch: {
         host: 'localhost',
         port: 3000,
-        logPrefix: 'BrowserSync'
-    }
+        logPrefix: 'BrowserSync',
+    },
 });
