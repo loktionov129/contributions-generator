@@ -1,3 +1,12 @@
+const Color = require('../color');
+const ATTRIBUTE_FILL = 'fill';
+
+// state with select(combobox)
+const previousContributions = {
+    contributions: [],
+    date: new Date()
+}
+
 class AppModel {
     getContributions() {
         return Array.from(Array(53))
@@ -15,6 +24,20 @@ class AppModel {
                 };
             });
     }
+
+    increaseContributions(target) {
+        const currentColor = new Color(target.getAttribute(ATTRIBUTE_FILL));
+        target.setAttribute(ATTRIBUTE_FILL, currentColor.next());
+    }
+
+    decreaseContributions(target) {
+        setColor(target, color => color.prev());
+    }
+}
+
+function setColor(target, resolveColor) {
+    const currentColor = new Color(target.getAttribute(ATTRIBUTE_FILL));
+    target.setAttribute(ATTRIBUTE_FILL, resolveColor(currentColor));
 }
 
 module.exports = AppModel;

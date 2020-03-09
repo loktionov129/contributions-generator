@@ -1,13 +1,9 @@
 const Observable = require('./observable');
 
 class Subject extends Observable {
-    constructor() {
-        super();
-    }
-
-    next(data) {
+    next(data = null) {
         this._subscribers
-            .forEach((subscriber) => subscriber(data));
+            .forEach(subscriber => subscriber(data));
     }
 
     asObservable() {

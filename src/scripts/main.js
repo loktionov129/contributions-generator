@@ -7,29 +7,6 @@ const appModel = new AppModel();
 const appView = new AppView();
 new AppController(appModel, appView);
 
-function fx(event) {
-    console.warn(event);
-}
-
-document.addEventListener('mousedown', function (event) {
-    event.preventDefault();
-    console.warn('down', event);
-    // contributions.addEventListener('mousemove', fx);
-});
-document.addEventListener('mouseup', function (event) {
-    event.preventDefault();
-    console.warn('up', event);
-    // contributions.removeEventListener('mousemove', fx);
-});
-
-
-document.getElementById('contributions__generate')
-    .addEventListener('click', function () {
-        console.warn(this);
-    });
-
-
-
 // Array.from(Array(53))
 //     .map(() => Array.from(Array(7)).map(() => 0))
 
@@ -67,3 +44,120 @@ document.getElementById('contributions__generate')
 //     return contributions;
 // }
 // save(dataToSave, '2018');
+
+
+
+/*
+import { Component, OnInit } from "@angular/core";
+import { ReplaySubject as OReplaySubject, Subject as OSubject } from "rxjs";
+
+class Subscription {
+  constructor(callback) {
+      this.callback = callback;
+  }
+
+  unsubscribe() {
+      this.callback();
+  }
+}
+
+class Observable {
+  constructor() {
+    this._subscribers = [];
+  }
+
+  subscribe(callback) {
+    this._subscribers.push(callback);
+
+    const unsubscribe = () => {
+      const subscriberIndex = this._subscribers.findIndex(
+        subscriber => subscriber === callback
+      );
+      this._subscribers.splice(subscriberIndex, 1);
+    };
+
+    return new Subscription(unsubscribe);
+  }
+}
+
+class Subject extends Observable {
+  constructor() {
+    super();
+  }
+
+  next(data = null) {
+    this._subscribers.forEach(subscriber => subscriber(data));
+  }
+
+  asObservable() {
+    return {
+      subscribe: data => this.subscribe(data)
+    };
+  }
+}
+
+class ReplaySubject extends Observable {
+  constructor() {
+      super();
+  }
+
+  next(data = null) {
+      this._subscribers
+          .forEach((subscriber) => subscriber(data));
+  }
+
+  asObservable() {
+      return {
+          subscribe: (data) => this.subscribe(data)
+      };
+  }
+}
+
+@Component({
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
+})
+export class AppComponent implements OnInit {
+  title = "CodeSandbox";
+
+  ngOnInit() {
+    console.group("Subject");
+    const subject = new Subject();
+
+    subject.subscribe(console.error);
+    subject.next(1);
+    subject.subscribe(console.warn);
+    subject.next(2);
+    console.groupEnd();
+
+    console.group("OSubject");
+    const oSubject = new OSubject();
+
+    oSubject.subscribe(console.error);
+    oSubject.next(1);
+    oSubject.subscribe(console.warn);
+    oSubject.next(2);
+    console.groupEnd();
+
+    console.group("ReplaySubject");
+    const replaySubject = new ReplaySubject();
+
+    replaySubject.subscribe(console.error);
+    replaySubject.next(1);
+    replaySubject.subscribe(console.warn);
+    replaySubject.next(2);
+    console.groupEnd();
+
+    console.group("OReplaySubject");
+    const oReplaySubject = new OReplaySubject();
+
+    oReplaySubject.subscribe(console.error);
+    oReplaySubject.next(1);
+    oReplaySubject.subscribe(console.warn);
+    oReplaySubject.next(2);
+    console.groupEnd();
+  }
+}
+
+*/
