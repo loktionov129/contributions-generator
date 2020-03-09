@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{project.name}} V{{project.version}}</title>
+    <meta name="description" content="{{project.description}}">
+    <meta name="keywords" content="{{project.keywords}}">
+    <meta name="author" content="{{project.author}}">
+    <link rel="stylesheet" href="css/{{config.bundle.css}}" type="text/css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <ul>
+    </ul>
+    <div class="contributions">
+        <input type="button" value="Clear!" id="contributions__clear"/>
+        <input type="button" value="Random!" id="contributions__random"/>
+
+        <form class="contributions__settings settings" name="settings">
+            <span>drawing mode:</span>
+            <label for="settings__mode-click">click</label>
+            <input type="radio" name="mode" id="settings__mode-click" value="click" checked="checked">
+            <label for="settings__mode-move">move</label>
+            <input type="radio" name="mode" id="settings__mode-move" value="move">
+        </form>
+        <br />
+
+        <svg id="contributions__area" class="contributions__area"></svg>
+
+        <br />
+        <label for="contributions__year">year</label>
+        <input type="text" id="contributions__year">
+
+        <input type="button" value="Generate!" id="contributions__generate"/>
+    </div>
+    <script src="js/{{config.bundle.js}}"></script>
+</body>
+</html>
+
+<!--
+
+http://jsfiddle.net/wqdHE/2/
+
+<label class="active">
+    Email
+    <span class="f1"></span>
+    <input type="radio" name="n1" value="email" checked />
+</label>
+<label>
+    Phone
+    <span class="f2"></span>
+    <input type="radio" name="n1" value="phone" />
+</label>
+
+
+$(document).ready(function () {
+    $('label').click(function() {
+        $('.active').removeClass("active");
+	    $(this).addClass("active");
+    });
+});
+
+label {
+  width: 125px;
+  display: block;
+  float: left;
+}
+label input {
+  display: none;
+}
+label span {
+  display: block;
+  width: 17px;
+  height: 17px;
+  background: #ebedf0;
+  float: left;
+  margin: 0 5px 0 0;
+  position: relative;
+}
+label span.f2 {
+  background: #c6e48b;
+}
+label.active span {
+  border: 1px solid #000;
+}
+
+-->
