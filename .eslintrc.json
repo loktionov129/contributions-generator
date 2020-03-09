@@ -775,8 +775,8 @@
                 "allow":[
     
                 ],
-                "allowAfterThis":false,
-                "allowAfterSuper":false,
+                "allowAfterThis":true,
+                "allowAfterSuper":true,
                 "enforceInMethodNames":true
             }
         ],

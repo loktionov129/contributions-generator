@@ -1,11 +1,10 @@
-const Color = require('./color');
 const AppModel = require('./models/app.model');
 const AppView = require('./views/app.view');
 const AppController = require('./controllers/app.controller');
 
-const appModel = new AppModel();
+const appModel = new AppModel(AppModel.randomState);
 const appView = new AppView();
-new AppController(appModel, appView);
+(() => new AppController(appModel, appView))();
 
 // Array.from(Array(53))
 //     .map(() => Array.from(Array(7)).map(() => 0))

@@ -1,12 +1,28 @@
-class AppController {
-    constructor(appModel, appView) {
-        this._appModel = appModel;
-        this._appView = appView;
+const AppModel = require('../models/app.model');
 
-        const contributions = appModel.getContributions();
-        appView.drawContributions(contributions);
-        initHandlers.call(this);
+function validateContributionChange(target) {
+    return target.tagName.toLowerCase() !== 'rect';
+}
+
+function increaseContributions(target) {
+    if (validateContributionChange(target)) {
+        return;
     }
+
+    AppModel.increaseContributions(target);
+}
+
+function decreaseContributions(target) {
+    if (validateContributionChange(target)) {
+        return;
+    }
+
+    AppModel.decreaseContributions(target);
+}
+
+function renderView() {
+    const contributions = this._appModel.getContributions();
+    this._appView.drawContributions(contributions);
 }
 
 function initHandlers() {
@@ -20,33 +36,35 @@ function initHandlers() {
         });
 
     this._appView.contributionIncrease$
-        .subscribe(increaseContributions.bind(this));
+        .subscribe(increaseContributions);
 
     this._appView.contributionDecrease$
-        .subscribe(decreaseContributions.bind(this));
+        .subscribe(decreaseContributions);
 
     this._appView.generate$
         .subscribe(console.error);
+
+    this._appView.clear$
+        .subscribe(() => {
+            this._appModel.resetContributions();
+            renderView.call(this);
+        });
+
+    this._appView.random$
+        .subscribe(() => {
+            this._appModel.setRandomContributions();
+            renderView.call(this);
+        });
 }
 
-function increaseContributions(target) {
-    if (validateContributionChange(target)) {
-        return;
+class AppController {
+    constructor(appModel, appView) {
+        this._appModel = appModel;
+        this._appView = appView;
+
+        renderView.call(this);
+        initHandlers.call(this);
     }
-
-    this._appModel.increaseContributions(target);
-}
-
-function decreaseContributions(target) {
-    if (validateContributionChange(target)) {
-        return;
-    }
-
-    this._appModel.decreaseContributions(target);
-}
-
-function validateContributionChange(target) {
-    return target.tagName.toLowerCase() !== 'rect';
 }
 
 module.exports = AppController;

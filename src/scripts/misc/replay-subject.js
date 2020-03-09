@@ -5,6 +5,8 @@ function notify(subscribers, events) {
         subscribers.forEach((subscriber) => {
             if (!event.calledSubscribers[subscriber]) {
                 subscriber(event.value);
+
+                // eslint-disable-next-line no-param-reassign
                 event.calledSubscribers[subscriber] = true;
             }
         });
