@@ -108,19 +108,9 @@ function disableDrawing(event) {
     this._contributions.removeEventListener('mousemove', this._handleCursorMoving);
 }
 
-//
-// constructor(elements)
-// this._elements = elements;
-
-//
-// state with select(combobox)
-
-//
-// save state to local storage
-// load prev state
-
 class AppView {
     constructor() {
+        this.year = document.getElementById('contributions__year');
         this._contributions = document.getElementById('contributions__area');
         this._changeContributions = changeContributions.bind(this);
         this._enableDrawing = enableDrawing.bind(this);
@@ -149,7 +139,7 @@ class AppView {
     drawContributions(data) {
         const html = data.map((column) => {
             const rects = column.rects
-                .map((row) => `<rect class="day" width="${row.width}" height="${row.height}" x="${row.x}" y="${row.y}" fill="${row.color}"></rect>`)
+                .map((row) => `<rect class="day" width="${row.width}" height="${row.height}" x="${row.x}" y="${row.y}" fill="${row.color}" data-col="${row.dataCol}" data-row="${row.dataRow}"></rect>`)
                 .join('');
 
             return `<g transform="translate(${column.translate}, 0)">${rects}</g>`;

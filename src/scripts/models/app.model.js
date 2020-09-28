@@ -1,19 +1,16 @@
 const Color = require('../color');
 const ATTRIBUTE_FILL = 'fill';
-
-const previousContributions = {
-    contributions: [],
-    date: new Date(),
-};
-
-console.warn('check todos in app.view.js', { previousContributions });
+const CONTRIBUTIONS_ROW = 53;
+const CONTRIBUTIONS_COL = 7;
 
 function generateState(resolveColor) {
-    return Array.from(Array(53))
+    return Array.from(Array(CONTRIBUTIONS_ROW))
         .map((_0, i) => ({
             translate: 14 * i,
-            rects: Array.from(Array(7))
+            rects: Array.from(Array(CONTRIBUTIONS_COL))
                 .map((_1, j) => ({
+                    dataCol: i,
+                    dataRow: j,
                     color: resolveColor(),
                     x: 14 - i,
                     y: 13 * j,
@@ -41,6 +38,33 @@ class AppModel {
         return this._state;
     }
 
+    transformContributions(year) {
+        const contributions = [];
+
+        const date = new Date(`${year}.01.01`);
+        date.setDate(1 - date.getDay());
+        const day = date.getDate();
+
+        for (let i = 0; i < CONTRIBUTIONS_ROW; i += 1) {
+            for (let j = 0; j < CONTRIBUTIONS_COL; j += 1) {
+                const color = Color.getIndexByColor(this._state[i].rects[j].color);
+
+                if (color) {
+                    const rectDate = new Date(date);
+
+                    rectDate.setDate(day + j + i * CONTRIBUTIONS_COL);
+
+                    const d = rectDate.getDate();
+                    const m = rectDate.getMonth();
+
+                    contributions.push(`${d}/${m}/${year}/${color}`);
+                }
+            }
+        }
+
+        return contributions;
+    }
+
     resetContributions() {
         this._state = AppModel.emptyState;
     }
@@ -49,12 +73,20 @@ class AppModel {
         this._state = generateRandomState();
     }
 
-    static increaseContributions(target) {
+    increaseContributions(target) {
         setColor(target, (color) => color.next());
+        this.updateState(target);
     }
 
-    static decreaseContributions(target) {
+    decreaseContributions(target) {
         setColor(target, (color) => color.prev());
+        this.updateState(target);
+    }
+
+    updateState(target) {
+        this._state[target.getAttribute('data-col')]
+            .rects[target.getAttribute('data-row')]
+            .color = target.getAttribute(ATTRIBUTE_FILL);
     }
 }
 

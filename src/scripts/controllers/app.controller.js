@@ -1,4 +1,4 @@
-const AppModel = require('../models/app.model');
+const FileLoader = require('../misc/file-loader');
 
 function validateContributionChange(target) {
     return target.tagName.toLowerCase() !== 'rect';
@@ -9,7 +9,7 @@ function increaseContributions(target) {
         return;
     }
 
-    AppModel.increaseContributions(target);
+    this._appModel.increaseContributions(target);
 }
 
 function decreaseContributions(target) {
@@ -17,7 +17,7 @@ function decreaseContributions(target) {
         return;
     }
 
-    AppModel.decreaseContributions(target);
+    this._appModel.decreaseContributions(target);
 }
 
 function renderView() {
@@ -36,13 +36,18 @@ function initHandlers() {
         });
 
     this._appView.contributionIncrease$
-        .subscribe(increaseContributions);
+        .subscribe(increaseContributions.bind(this));
 
     this._appView.contributionDecrease$
-        .subscribe(decreaseContributions);
+        .subscribe(decreaseContributions.bind(this));
 
     this._appView.generate$
-        .subscribe(console.error);
+        .subscribe(() => {
+            const year = +this._appView.year.value || new Date().getFullYear();
+            const data = this._appModel.transformContributions(year);
+            console.warn(data.join('\r\n'));
+            FileLoader.download('dates.txt', data.join('\n'));
+        });
 
     this._appView.clear$
         .subscribe(() => {

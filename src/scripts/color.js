@@ -1,4 +1,10 @@
-const colors = ['#ebedf0', '#c6e48b', '#7bc96f', '#239a3b', '#96127'];
+const colors = [
+    '#ebedf0',
+    '#9be9a8',
+    '#40c463',
+    '#30a14e',
+    '#216e39',
+];
 
 function getIndexByColor(target) {
     return colors.findIndex((color) => color === target);
@@ -7,6 +13,10 @@ function getIndexByColor(target) {
 class Color {
     constructor(color) {
         this.color = color;
+    }
+
+    static getIndexByColor(color) {
+        return colors.findIndex((item) => item === color);
     }
 
     static random() {
