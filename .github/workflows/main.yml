@@ -16,7 +16,7 @@ jobs:
               run: yarn install
 
             - name: Build
-              run: yarn run build
+              run: timeout 60 yarn run build
 
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v3
