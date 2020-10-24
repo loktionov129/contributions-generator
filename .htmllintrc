@@ -13,7 +13,7 @@
         "width"
     ],
     "attr-name-ignore-regex":false,
-    "attr-name-style":"dash",
+    "attr-name-style":false,
     "attr-new-line":false,
     "attr-no-dup":true,
     "attr-no-unsafe-char":true,
@@ -34,7 +34,7 @@
     "html-valid-content-model":true,
     "id-class-ignore-regex":false,
     "id-class-no-ad":true,
-    "id-class-style":"dash",
+    "id-class-style":false,
     "id-no-dup":true,
     "img-req-alt":true,
     "img-req-src":false,
