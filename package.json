@@ -1,10 +1,10 @@
 {
     "name": "contributions-generator",
     "version": "1.0.0",
-    "description": "desc1241ription",
+    "description": "Web Application allowing to generate Github activity",
     "keywords": [
-        "kwrd1",
-        "kwrd2"
+        "github activity",
+        "github contributions"
     ],
     "author": "loktionov129",
     "license": "MIT",
