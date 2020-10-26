@@ -1,4 +1,7 @@
 # contributions-generator
+Web Application allowing to generate Github activity
+
+## Usage
 
 Generate dates.txt using this app
 
